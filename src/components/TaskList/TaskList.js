@@ -1,7 +1,7 @@
 import Task from "../Task/Task";
 import "./TaskList.css";
 
-const TaskList = ({ todos, changeTodoStatus,deleteTodo }) => {
+const TaskList = ({ todos, changeTodoStatus, deleteTodo }) => {
   return (
     <section className="main">
       <ul className="todo-list">
@@ -10,11 +10,11 @@ const TaskList = ({ todos, changeTodoStatus,deleteTodo }) => {
 
           return (
             <Task
-              deleteTodo = {deleteTodo}
+              deleteTodo={deleteTodo}
               id={id}
               status={status}
               changeTodoStatus={changeTodoStatus}
-              key={i}
+              key={id}
               name={label}
             />
           );

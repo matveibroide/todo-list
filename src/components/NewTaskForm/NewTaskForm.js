@@ -1,19 +1,23 @@
 import { useState } from "react";
 
-const NewTaskForm = () => {
+const NewTaskForm = ({addTodo}) => {
   const [todoName, setTodoName] = useState("");
 
   const onInputChange = (e) => {
-    setTodoName(e.target.value);
-  };
+    e.preventDefault()
+    setTodoName(e.target.value)
+  }
+
 
   return (
+    <form onSubmit={(e) => addTodo(e,todoName)} action="">
     <input
-      onChange={(e) => onInputChange(e)}
+      onChange={onInputChange}
       className="new-todo"
       placeholder="What needs to be done?"
       autoFocus
     />
+     </form>
   );
 };
 

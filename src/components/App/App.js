@@ -6,10 +6,13 @@ import "./App.css";
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 
 function App() {
+  const uid = function () {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  };
   const [todos, setTodos] = useState([
-    { label: "Drink Coffee", completed: false, id: 0 },
-    { label: "Train", completed: false, id: 1 },
-    { label: "Learn React", completed: false, id: 2 },
+    { label: "Drink Coffee", completed: false, id: uid() },
+    { label: "Train", completed: false, id: uid() },
+    { label: "Learn React", completed: false, id: uid() },
   ]);
 
   const [all, setAll] = useState(true);
@@ -26,16 +29,15 @@ function App() {
     );
   };
 
-  const uid = function () {
-    return Date.now().toString(36) + Math.random().toString(36).substr(2);
-  };
-
-  const addTodo = (todoLabel) => {
+  const addTodo = (e, todoLabel) => {
+    e.preventDefault();
     const updatedTodos = [
       ...todos,
       { label: todoLabel, completed: false, id: uid() },
     ];
     setTodos(updatedTodos);
+
+    document.querySelector("input").value = "";
   };
 
   const deleteTodo = (e) => {
@@ -89,9 +91,8 @@ function App() {
     }
   });
 
-  let todoCounter = todos.filter(item => item.completed === false).length
+  let todoCounter = todos.filter((item) => item.completed === false).length;
 
- 
   return (
     <section className="todoapp">
       <header className="header">
